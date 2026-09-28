@@ -1,9 +1,15 @@
--- DARK HORSE HUB (Versão Sem Abas - Direta para Mobile)
+-- ==========================================
+--        🐴 DARK HORSE HUB PREMIUM 🐴        
+--  Otimizado para Mobile & Executores Atuais
+-- ==========================================
+
 local Players = game:GetService("Players")
 local UserInputService = game:GetService("UserInputService")
+local RunService = game:GetService("RunService")
+local StarterGui = game:GetService("StarterGui")
 local player = Players.LocalPlayer
 
--- Anti-Duplicação
+-- Anti-Duplicação (Segurança Máxima)
 if player:WaitForChild("PlayerGui"):FindFirstChild("DarkHorseHub") then
     player.PlayerGui.DarkHorseHub:Destroy()
 end
@@ -13,18 +19,30 @@ gui.Name = "DarkHorseHub"
 gui.ResetOnSpawn = false
 gui.Parent = player:WaitForChild("PlayerGui")
 
--- Janela Principal Super Compacta
+-- Janela Principal (Design Moderno Dark/Neon)
 local main = Instance.new("Frame")
-main.Size = UDim2.fromOffset(320, 260)
+main.Size = UDim2.fromOffset(330, 280)
 main.Position = UDim2.fromScale(0.5, 0.5)
 main.AnchorPoint = Vector2.new(0.5, 0.5)
-main.BackgroundColor3 = Color3.fromRGB(20, 20, 25)
+main.BackgroundColor3 = Color3.fromRGB(15, 15, 18) -- Fundo Dark Premium
+main.BorderSizePixel = 0
 main.Active = true
 main.Parent = gui
 
-Instance.new("UICorner", main).CornerRadius = UDim.new(0, 8)
+local mainCorner = Instance.new("UICorner")
+mainCorner.CornerRadius = UDim.new(0, 12)
+mainCorner.Parent = main
 
--- Arrastar no Celular (Touch/Mouse)
+-- Borda Neon Elegante
+local stroke = Instance.new("UIStroke")
+stroke.Color = Color3.fromRGB(0, 170, 255) -- Azul Neon
+stroke.Thickness = 1.5
+stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+stroke.Parent = main
+
+-- ==========================================
+--   SISTEMA DE ARRASTAR MOBILE (TOUCH FIX)
+-- ==========================================
 local dragging, dragInput, dragStart, startPos
 main.InputBegan:Connect(function(input)
 	if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
@@ -42,132 +60,197 @@ UserInputService.InputChanged:Connect(function(input)
 	end
 end)
 
--- Título do Menu
+-- Título do Hub
 local title = Instance.new("TextLabel")
-title.Size = UDim2.new(1, -40, 0, 35)
-title.Position = UDim2.fromOffset(12, 5)
+title.Size = UDim2.new(1, -40, 0, 40)
+title.Position = UDim2.fromOffset(15, 2)
 title.BackgroundTransparency = 1
-title.Text = "DARK HORSE HUB"
-title.TextColor3 = Color3.new(1, 1, 1)
+title.Text = "🐴 DARK HORSE HUB"
+title.TextColor3 = Color3.fromRGB(255, 255, 255)
 title.TextSize = 16
 title.Font = Enum.Font.SourceSansBold
 title.TextXAlignment = Enum.TextXAlignment.Left
 title.Parent = main
 
--- Lista de Conteúdo com Rolagem
+-- Lista de Funções com Rolagem Suave
 local content = Instance.new("ScrollingFrame")
-content.Size = UDim2.new(1, -20, 1, -50)
-content.Position = UDim2.fromOffset(10, 42)
+content.Size = UDim2.new(1, -20, 1, -55)
+content.Position = UDim2.fromOffset(10, 45)
 content.BackgroundTransparency = 1
 content.BorderSizePixel = 0
-content.ScrollBarThickness = 4
+content.ScrollBarThickness = 3
+content.ScrollBarImageColor3 = Color3.fromRGB(0, 170, 255)
 content.CanvasSize = UDim2.new(0, 0, 0, 0)
 content.Parent = main
 
 local layout = Instance.new("UIListLayout")
-layout.Padding = UDim.new(0, 5)
+layout.Padding = UDim.new(0, 6)
 layout.Parent = content
 
--- Ajuste automático do tamanho da lista
 layout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
 	content.CanvasSize = UDim2.new(0, 0, 0, layout.AbsoluteContentSize.Y + 10)
 end)
 
--- Função para Criar os Botões de Hack
-local function addFunction(name, callback)
+-- Função do Sistema Notificações do Hub
+local function notifyUser(msg, cor)
+    StarterGui:SetCore("ChatMakeSystemMessage", {
+        Text = "[🐴 Dark Horse]: " .. msg,
+        Color = cor or Color3.fromRGB(255, 255, 255),
+        Font = Enum.Font.SourceSansBold,
+        FontSize = Enum.FontSize.Size18
+    })
+end
+
+-- Criador de Botões Premium (com Efeito Visual ao clicar)
+local function createButton(name, callback)
 	local button = Instance.new("TextButton")
-	button.Size = UDim2.new(1, -5, 0, 36)
-	button.BackgroundColor3 = Color3.fromRGB(35, 35, 42)
+	button.Size = UDim2.new(1, -5, 0, 38)
+	button.BackgroundColor3 = Color3.fromRGB(24, 24, 30)
 	button.BorderSizePixel = 0
-	button.Text = "  " .. name
-	button.TextColor3 = Color3.new(1, 1, 1)
+	button.Text = "   " .. name
+	button.TextColor3 = Color3.fromRGB(230, 230, 230)
 	button.TextSize = 14
 	button.Font = Enum.Font.SourceSans
 	button.TextXAlignment = Enum.TextXAlignment.Left
 	button.Parent = content
-	button.MouseButton1Click:Connect(function() if callback then callback() end end)
-    Instance.new("UICorner", button).CornerRadius = UDim.new(0, 5)
+
+	local c = Instance.new("UICorner")
+	c.CornerRadius = UDim.new(0, 6)
+	c.Parent = button
+
+	-- Efeito visual de clique para Mobile
+	button.MouseButton1Down:Connect(function()
+		button.BackgroundColor3 = Color3.fromRGB(0, 120, 200)
+	end)
+	button.MouseButton1Up:Connect(function()
+		button.BackgroundColor3 = Color3.fromRGB(24, 24, 30)
+	end)
+	button.MouseButton1Click:Connect(function()
+		if callback then callback() end
+	end)
 end
 
--- Função Auxiliar de Teleporte para o Jogador Mais Próximo
-local function teleportToNearest()
+-- Variables de Controle dos Scripts
+local speedActive = false
+local infJumpActive = false
+local antiRagdollActive = false
+local noclipActive = false
+
+-- Loops em tempo real (Garante estabilidade contra anti-cheats do jogo)
+RunService.RenderStepped:Connect(function()
+    if player.Character and player.Character:FindFirstChildOfClass("Humanoid") then
+        local hum = player.Character:FindFirstChildOfClass("Humanoid")
+        
+        -- Loop de Velocidade
+        if speedActive then hum.WalkSpeed = 100 end
+        
+        -- Loop Anti-Ragdoll
+        if antiRagdollActive then
+            hum.PlatformStand = false
+            hum.RequiresNeck = false
+            hum:SetStateEnabled(Enum.HumanoidStateType.FallingDown, false)
+            hum:SetStateEnabled(Enum.HumanoidStateType.Ragdoll, false)
+        end
+        
+        -- Loop Noclip (Passar pelas paredes/Rouba Voando)
+        if noclipActive and player.Character:FindFirstChild("HumanoidRootPart") then
+            for _, part in ipairs(player.Character:GetDescendants()) do
+                if part:IsA("BasePart") then part.CanCollide = false end
+            end
+        end
+    end
+end)
+
+-- Sistema do Pulo Infinito
+UserInputService.JumpRequest:Connect(function()
+    if infJumpActive and player.Character and player.Character:FindFirstChildOfClass("Humanoid") then
+        player.Character:FindFirstChildOfClass("Humanoid"):ChangeState(Enum.HumanoidStateType.Jumping)
+    end
+end)
+
+-- Teleporte Proporcional para o Jogador mais Próximo
+local function tpToNearestPlayer()
     local closest = nil
     local shortestDistance = math.huge
     for _, p in ipairs(Players:GetPlayers()) do
         if p ~= player and p.Character and p.Character:FindFirstChild("HumanoidRootPart") and player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
             local dist = (player.Character.HumanoidRootPart.Position - p.Character.HumanoidRootPart.Position).Magnitude
-            if dist < shortestDistance then
-                closest = p.Character.HumanoidRootPart
-                shortestDistance = dist
-            end
+            if dist < shortestDistance then closest = p.Character.HumanoidRootPart shortestDistance = dist end
         end
     end
     if closest then
         player.Character.HumanoidRootPart.CFrame = closest.CFrame + Vector3.new(0, 3, 0)
+        notifyUser("Teleportado até o alvo!", Color3.fromRGB(0, 255, 0))
+    else
+        notifyUser("Nenhum jogador encontrado por perto.", Color3.fromRGB(255, 0, 0))
     end
 end
 
 -- ==========================================
--- TODAS AS FUNÇÕES DIRETAS NA TELA
+--        SISTEMA DE BOTÕES DO HUB
 -- ==========================================
 
-addFunction("⚡ Speed Boost (Velocidade)", function()
-    if player.Character and player.Character:FindFirstChildOfClass("Humanoid") then
-        player.Character:FindFirstChildOfClass("Humanoid").WalkSpeed = 80
-    end
+createButton("⚡ Speed Boost 100 (Ativar/Desativar)", function()
+    speedActive = not speedActive
+    notifyUser("Speed Boost " .. (speedActive and "LIGADO" or "DESLIGADO"), speedActive and Color3.fromRGB(0, 255, 100) or Color3.fromRGB(255, 50, 50))
 end)
 
-addFunction("🦘 Pulo Infinito", function()
-    UserInputService.JumpRequest:Connect(function()
-        if player.Character and player.Character:FindFirstChildOfClass("Humanoid") then
-            player.Character:FindFirstChildOfClass("Humanoid"):ChangeState(Enum.HumanoidStateType.Jumping)
-        end
-    end)
+createButton("🦘 Pulo Infinito (Ativar/Desativar)", function()
+    infJumpActive = not infJumpActive
+    notifyUser("Pulo Infinito " .. (infJumpActive and "LIGADO" or "DESLIGADO"), infJumpActive and Color3.fromRGB(0, 255, 100) or Color3.fromRGB(255, 50, 50))
 end)
 
-addFunction("🧭 Teleguiado (Teleport Proximo)", function()
-    teleportToNearest()
+createButton("🧭 Teleguiado (Teleport no mais perto)", function()
+    tpToNearestPlayer()
 end)
 
-addFunction("👻 Invisivel (Local)", function()
+createButton("🪽 Rouba Voando / Noclip (Ativar/Desativar)", function()
+    noclipActive = not noclipActive
+    notifyUser("Noclip/Voo " .. (noclipActive and "LIGADO" or "DESLIGADO"), noclipActive and Color3.fromRGB(0, 255, 100) or Color3.fromRGB(255, 50, 50))
+end)
+
+createButton("🛡️ Anti-Ragdoll (Imune a quedas)", function()
+    antiRagdollActive = not antiRagdollActive
+    notifyUser("Anti-Ragdoll " .. (antiRagdollActive and "LIGADO" or "DESLIGADO"), antiRagdollActive and Color3.fromRGB(0, 255, 100) or Color3.fromRGB(255, 50, 50))
+end)
+
+createButton("👻 Invisibilidade (Modo Local)", function()
     if player.Character then
         for _, v in pairs(player.Character:GetDescendants()) do
             if v:IsA("BasePart") or v:IsA("Decal") then
-                v.Transparency = v.Name == "HumanoidRootPart" and 1 or 0.7
+                if v.Name ~= "HumanoidRootPart" then v.Transparency = 0.8 end
             end
         end
+        notifyUser("Invisibilidade local ativada!", Color3.fromRGB(0, 255, 255))
     end
 end)
 
-addFunction("🛡️ Anti-Ragdoll", function()
-    if player.Character and player.Character:FindFirstChildOfClass("Humanoid") then
-        player.Character:FindFirstChildOfClass("Humanoid").PlatformStand = false
-        player.Character:FindFirstChildOfClass("Humanoid").RequiresNeck = false
-    end
-end)
-
-addFunction("🪽 Rouba Voando", function()
-    if player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
-        local bv = Instance.new("BodyVelocity", player.Character.HumanoidRootPart)
-        bv.Velocity = Vector3.new(0, 45, 0)
-        bv.MaxForce = Vector3.new(0, math.huge, 0)
-        task.wait(0.8)
-        bv:Destroy()
-    end
-end)
-
-addFunction("📚 Vasta Biblioteca (Dex)", function()
+createButton("📚 Vasta Biblioteca (Abrir Dex Explorer)", function()
+    notifyUser("Carregando Banco de Dados...", Color3.fromRGB(255, 170, 0))
     loadstring(game:HttpGet("https://githubusercontent.com"))()
 end)
 
--- Botão Fechar (X)
+-- Botão Fechar (Design Compacto Clean)
 local close = Instance.new("TextButton")
-close.Size = UDim2.fromOffset(25, 25)
-close.Position = UDim2.new(1, -32, 0, 5)
-close.BackgroundColor3 = Color3.fromRGB(180, 45, 45)
+close.Size = UDim2.fromOffset(24, 24)
+close.Position = UDim2.new(1, -30, 0, 8)
+close.BackgroundColor3 = Color3.fromRGB(40, 20, 20)
 close.Text = "X"
-close.TextColor3 = Color3.new(1, 1, 1)
+close.TextColor3 = Color3.fromRGB(255, 100, 100)
 close.Font = Enum.Font.SourceSansBold
 close.Parent = main
-close.MouseButton1Click:Connect(function() gui:Destroy() end)
-Instance.new("UICorner", close).CornerRadius = UDim.new(1, 0)
+
+local closeCorner = Instance.new("UICorner")
+closeCorner.CornerRadius = UDim.new(1, 0)
+closeCorner.Parent = close
+
+local closeStroke = Instance.new("UIStroke")
+closeStroke.Color = Color3.fromRGB(180, 45, 45)
+closeStroke.Parent = close
+
+close.MouseButton1Click:Connect(function()
+    gui:Destroy()
+end)
+
+notifyUser("Injetado com sucesso! Divirta-se.", Color3.fromRGB(0, 170, 255))
+
