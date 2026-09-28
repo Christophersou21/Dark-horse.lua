@@ -240,3 +240,12 @@ end)
 
 showLennon() -- Inicia na primeira aba por padrão
 notify("Dark Horse", "Script injetado com sucesso!")
+Use o código com cuidado.
+Salve clicando em Commit changes lá embaixo do GitHub.
+🚀 Código de Execução (Sua Loadstring)
+Agora use este comando exato dentro do seu executor no jogo:
+lua
+loadstring(game:HttpGet('https://githubusercontent.com'))()
+Use o código com cuidado.
+Após salvar as alterações no GitHub, tente rodar essa linha no seu executor do Roblox. O menu compacto apareceu certinho na tela e as funções como o Speed Boost começaram a funcionar? Me avise!
+As respostas da IA podem conter erros. Saiba mais
