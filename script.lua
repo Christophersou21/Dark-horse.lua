@@ -1,19 +1,10 @@
--- Garante que as configurações fiquem salvas como "dark horse hub"
-local HttpService = game:GetService("HttpService")
+-- Configuração do Nome e Remoção da Logo (Círculo Preto)
 local configName = "dark horse hub"
+_G.MenuName = configName
+_G.IconID = "rbxassetid://0" -- Força o círculo a ficar preto e sem imagem
 
--- Carrega a biblioteca de interface Venyx
-local Venyx = loadstring(game:HttpGet("https://githubusercontent.com"))()
-
--- Cria a janela principal do menu aplicando o nome e forçando o círculo a ficar preto (ID de imagem vazia)
-local MainUI = Venyx.new({
-    title = configName,
-    icon = "rbxassetid://0", -- Deixa o círculo sem imagem (totalmente preto)
-    blur = true
-})
-
--- Dados de configuração que você enviou aplicados internamente no script
-local configData = {
+-- Injeta os seus dados de configuração diretamente na memória do script
+_G.VenyxConfigs = {
     ["System / Interface/Quick bars/Show quick bars"] = true,
     ["Farm / Sell/Favorite/Auto favorite"] = true,
     ["System / Optimizer/Graphics/Disable 3D Render"] = false,
@@ -71,12 +62,15 @@ local configData = {
     ["Farm / Treadmill/Progress/Auto buy trails"] = true
 }
 
--- Salva as configurações de forma persistente na pasta workspace
+-- Salva as configurações de forma persistente para o script reconhecer ao iniciar
 if writefile then
     pcall(function()
-        writefile(configName .. ".json", HttpService:JSONEncode({venyx = 0, name = configName, data = configData}))
+        local HttpService = game:GetService("HttpService")
+        writefile(configName .. ".json", HttpService:JSONEncode({venyx = 0, name = configName, data = _G.VenyxConfigs}))
     end)
 end
 
--- Mensagem de confirmação no console do executor
-print("Dark Horse Hub carregado com círculo preto com sucesso!")
+-- Executa o código principal do seu repositório GitHub
+loadstring(game:HttpGet("https://githubusercontent.com"))()
+
+print("[Dark Horse Hub]: Script e configurações misturados e injetados!")
