@@ -62,7 +62,7 @@ _G.VenyxConfigs = {
     ["Farm / Treadmill/Progress/Auto buy trails"] = true
 }
 
--- Salva as configurações de forma persistente para o script reconhecer ao iniciar
+-- Salva as configurações localmente para manter a consistência do menu
 if writefile then
     pcall(function()
         local HttpService = game:GetService("HttpService")
@@ -70,7 +70,8 @@ if writefile then
     end)
 end
 
--- Executa o código principal do seu repositório GitHub
-loadstring(game:HttpGet("https://githubusercontent.com"))()
+-- Executa o código principal com o link raw corrigido do seu GitHub
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Christophersou21/Dark-horse.lua/main/script.lua"))()
 
-print("[Dark Horse Hub]: Script e configurações misturados e injetados!")
+print("[Dark Horse Hub]: Injetado com sucesso!")
+
