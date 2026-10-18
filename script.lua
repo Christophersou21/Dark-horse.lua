@@ -1,9 +1,9 @@
--- Configuração do Nome e Remoção da Logo (Círculo Preto)
+-- Define o nome do menu e aplica o seu ID de imagem personalizado no círculo
 local configName = "dark horse hub"
 _G.MenuName = configName
-_G.IconID = "rbxassetid://0" -- Força o círculo a ficar preto e sem imagem
+_G.IconID = "rbxassetid://135502464476787" -- Seu ID de imagem aplicado aqui
 
--- Injeta os seus dados de configuração diretamente na memória do script
+-- Injeta os dados da sua configuração diretamente na memória do script
 _G.VenyxConfigs = {
     ["System / Interface/Quick bars/Show quick bars"] = true,
     ["Farm / Sell/Favorite/Auto favorite"] = true,
@@ -62,7 +62,7 @@ _G.VenyxConfigs = {
     ["Farm / Treadmill/Progress/Auto buy trails"] = true
 }
 
--- Salva as configurações localmente para manter a consistência do menu
+-- Salva as configurações de forma persistente na pasta workspace do executor
 if writefile then
     pcall(function()
         local HttpService = game:GetService("HttpService")
@@ -70,8 +70,6 @@ if writefile then
     end)
 end
 
--- Executa o código principal com o link raw corrigido do seu GitHub
+-- Carrega o script principal diretamente do seu repositório GitHub
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Christophersou21/Dark-horse.lua/main/script.lua"))()
-
-print("[Dark Horse Hub]: Injetado com sucesso!")
 
