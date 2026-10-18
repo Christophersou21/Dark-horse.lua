@@ -1,1 +1,66 @@
-.
+-- Define o nome do menu e aplica o seu ID de imagem personalizado no círculo
+local configName = "dark horse hub"
+_G.MenuName = configName
+_G.IconID = "rbxassetid://135502464476787" -- Seu ID de imagem aplicado aqui
+
+-- Injeta os dados da sua configuração diretamente na memória do script
+_G.VenyxConfigs = {
+    ["System / Interface/Quick bars/Show quick bars"] = true,
+    ["Farm / Sell/Favorite/Auto favorite"] = true,
+    ["System / Optimizer/Graphics/Disable 3D Render"] = false,
+    ["Farm / Pen/Auto place/Place first"] = "Best value",
+    ["Steal / Auto Steal/Filter/Only below /s"] = 0,
+    ["Farm / Pen/Auto hatch/Equip best pets"] = true,
+    ["Event / AA/Capture the egg/Auto capture event egg"] = false,
+    ["Farm / Mutate/Mutate filter/Only these eggs"] = {},
+    ["Farm / Treadmill/Treadmill/Auto upgrade treadmill"] = false,
+    ["Steal / Auto Steal/Auto steal/Drop eggs at safe zone"] = false,
+    ["Steal / Auto Steal/Auto hop server/Auto hop"] = false,
+    ["System / Interface/Interface/Dim the game"] = 50,
+    ["Player / Combat/Hit aura/Skip friends"] = true,
+    ["Player / ESP/Others/Pen egg ESP"] = false,
+    ["System / Optimizer/Frame rate/FPS position"] = "0.5000,18,0.0000,-64",
+    ["Event / Butterfly/Butterfly bloom/Auto butterfly bloom"] = true,
+    ["Farm / Pen/Auto hatch/Rarities"] = {"Eternal", "Secret"},
+    ["Steal / Auto Steal/Filter/Min value /s"] = 0,
+    ["Player / Combat/Hit aura/Hit aura"] = true,
+    ["Event / Star/Shooting Star/Auto catch shooting star"] = true,
+    ["Steal / Egg Predictor/Egg showcase/Calculate mutations"] = {},
+    ["Steal / Egg Predictor/Egg showcase/Sort eggs"] = "Value",
+    ["Event / Halloween/Ghost Dog and fishing/Auto fishing"] = true,
+    ["System / Optimizer/Bases/Hide other players' pets and eggs"] = false,
+    ["Player / Combat/Auto hit/Auto hit"] = false,
+    ["Event / Halloween/Ghost Dog and fishing/Auto Ghost Dog quest"] = true,
+    ["Event / Butterfly/Butterfly bloom/Catch mode"] = "Chase",
+    ["Event / Butterfly/Butterfly machine/Trade"] = {"Emerald to Sapphire", "Sapphire to Amethyst", "Amethyst to Radiant"},
+    ["Event / Halloween/Halloween Dimension/Halloween eggs"] = {"Bone Emperor", "Voidseer Pumpkin", "Zombified Bone Emperor", "Ghost Reaper", "Gorillastein", "Phantom Dragon", "Shelltide Voyager", "Zombified Grave Cerberus", "Zombified Phantom Dragon", "BloodBloom", "Grave Cerberus", "Graveyard Brute", "Werewolf", "Zombified Night Fang", "Zombified Pumpkin Fiend", "Zombified Tombstone Bear"},
+    ["Farm / Pen/Auto place/Auto place"] = true,
+    ["Steal / Auto Steal/Filter/Rarities"] = {"Divine", "Eternal", "Secret"},
+    ["System / Webhook/What to post/Post fused eggs"] = true,
+    ["Event / Halloween/Halloween Dimension/Auto Pumpkin Moon"] = true,
+    ["Farm / Sell/Pets/Sell rarities"] = {"Rare", "Uncommon", "Common"},
+    ["Player / Move/Protection/Ignore traps"] = true,
+    ["Farm / Fuse/Fuse filter/Rarities"] = {"Eternal", "Secret", "Cosmic"},
+    ["System / Webhook/Discord webhook/Ping role ID"] = "",
+    ["Player / ESP/Others/Hide sleeping guards"] = true,
+    ["Event / Halloween/Halloween Dimension/Min value /s"] = 0,
+    ["System / Optimizer/Frame rate/Show FPS and ping"] = true,
+    ["Farm / Treadmill/Progress/Auto claim index rewards"] = true,
+    ["System / Interface/Quick bars/Keybinds"] = true,
+    ["Steal / Auto Steal/Auto steal/Instant steps"] = 3,
+    ["Farm / Fuse/Fuse filter/Never fuse"] = {},
+    ["Farm / Pen/Auto hatch/Mutations"] = {},
+    ["System / Optimizer/Bases/Hide my pets and eggs"] = false,
+    ["Event / Halloween/Monsters/Monster order"] = "Most tokens",
+    ["Steal / Auto Steal/Filter/Zones"] = {"Enchanted Forest", "Light Dark", "Titan Temple", "Cherry Blossom", "Cosmic"},
+    ["Event / Butterfly/Butterfly machine/Auto craft essence"] = true,
+    ["Farm / Mutate/Auto mutate/Auto mutate"] = true,
+    ["Player / ESP/Others/Other pens ESP"] = false,
+    ["Player / ESP/Field eggs/Egg ESP"] = false,
+    ["Farm / Pen/Keep eggs/Min value /s"] = 50000000000,
+    ["Steal / Auto Steal/Auto steal/Delivery method"] = "Tween",
+    ["Farm / Treadmill/Progress/Auto buy trails"] = true
+}
+
+-- Executa o seu arquivo específico de roubo e farm (stealaneggies)
+loadstring(game:HttpGet("https://githubusercontent.com/Christophersou21/Dark-horse.lua/main/stealaeggies"))()
