@@ -63,4 +63,4 @@ _G.VenyxConfigs = {
 }
 
 -- Executa o seu arquivo específico de roubo e farm (stealaneggies)
-loadstring(game:HttpGet("https://githubusercontent.com/Christophersou21/Dark-horse.lua/main/stealaeggies"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Christophersou21/Dark-horse.lua/main/stealaeggies"))()
